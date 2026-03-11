@@ -28,19 +28,29 @@ const CurrentAffairs = () => {
     <section className="py-24 bg-light relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm font-bold uppercase tracking-widest text-secondary mb-3 inline-block"
+          >
+            Stay Informed
+          </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4"
           >
             Daily <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Current Affairs</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.25 }}
             className="text-slate-500 max-w-2xl mx-auto text-lg"
           >
             Stay updated with expert analysis of daily news, specifically curated for UPSC CSE relevance.
@@ -81,9 +91,16 @@ const CurrentAffairs = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <button className="bg-primary hover:bg-slate-800 text-white px-8 py-3 rounded-full font-bold transition-all shadow-md">
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.06, boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-primary hover:bg-slate-800 text-white px-8 py-3 rounded-full font-bold transition-all shadow-md"
+          >
             Browse Archive
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

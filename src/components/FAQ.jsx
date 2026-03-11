@@ -25,17 +25,27 @@ const faqs = [
   }
 ];
 
-const FAQItem = ({ faq, isOpen, onClick }) => {
+const FAQItem = ({ faq, isOpen, onClick, index }) => {
   return (
-    <div className="border border-slate-200 rounded-2xl mb-4 overflow-hidden bg-white shadow-sm">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
+      className="border border-slate-200 rounded-2xl mb-4 overflow-hidden bg-white shadow-sm"
+    >
       <button 
         onClick={onClick}
         className="w-full flex justify-between items-center p-6 text-left focus:outline-none focus:ring-2 focus:ring-accent/20"
       >
         <span className={`text-lg font-heading font-semibold transition-colors ${isOpen ? 'text-secondary' : 'text-primary'}`}>{faq.q}</span>
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-50 transition-transform duration-300 flex-shrink-0 ${isOpen ? 'rotate-180 bg-secondary/10 text-secondary' : 'text-slate-400'}`}>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-50 flex-shrink-0 ${isOpen ? 'bg-secondary/10 text-secondary' : 'text-slate-400'}`}
+        >
           <ChevronDown size={20} />
-        </div>
+        </motion.div>
       </button>
       
       <AnimatePresence>
@@ -44,7 +54,7 @@ const FAQItem = ({ faq, isOpen, onClick }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
             <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
               {faq.a}
@@ -52,7 +62,7 @@ const FAQItem = ({ faq, isOpen, onClick }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
@@ -63,40 +73,46 @@ const FAQ = () => {
     <section className="py-24 bg-light relative">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="text-sm font-bold uppercase tracking-widest text-secondary mb-3 inline-block"
+          >
+            Got Questions?
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4"
           >
             Frequently Asked <span className="text-secondary">Questions</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.25, duration: 0.5 }}
             className="text-slate-500 text-lg"
           >
             Got queries? We have answers.
           </motion.p>
         </div>
 
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-        >
+        <div>
           {faqs.map((faq, idx) => (
             <FAQItem 
               key={idx} 
               faq={faq} 
+              index={idx}
               isOpen={openIdx === idx} 
               onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} 
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -59,19 +59,29 @@ const Courses = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm font-bold uppercase tracking-widest text-secondary mb-3 inline-block"
+          >
+            Our Programs
+          </motion.span>
           <motion.h2 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4"
           >
             Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Learning Programs</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
             className="text-slate-500 max-w-2xl mx-auto text-lg"
           >
             Meticulously designed courses to navigate the complex UPSC syllabus with clarity, direction, and expert mentorship.
@@ -127,9 +137,16 @@ const Courses = () => {
         </motion.div>
         
         <div className="mt-16 text-center">
-          <button className="bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-bold transition-all shadow-md">
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.06, boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-bold transition-all shadow-md"
+          >
             View All Courses
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

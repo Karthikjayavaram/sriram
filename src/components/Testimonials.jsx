@@ -40,32 +40,43 @@ const Testimonials = () => {
       <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0a2540_2px,transparent_2px)] [background-size:32px_32px]"></div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
+        {/* Section icon — slides up */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.55 }}
           className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-sm"
         >
           <Quote size={28} />
         </motion.div>
         
+        {/* Heading — slides up */}
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.65, delay: 0.1 }}
           className="text-4xl md:text-5xl font-heading font-bold text-primary mb-16"
         >
           Student <span className="text-secondary">Experiences</span>
         </motion.h2>
 
-        <div className="relative max-w-4xl mx-auto bg-white rounded-[2.5rem] p-8 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100">
+        {/* Carousel Card — slides up into view */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative max-w-4xl mx-auto bg-white rounded-[2.5rem] p-8 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, x: -60 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
               className="flex flex-col items-center"
             >
               <p className="text-xl md:text-3xl text-slate-700 font-medium font-heading leading-relaxed mb-10 text-center italic">
@@ -84,22 +95,39 @@ const Testimonials = () => {
 
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-8">
-            <button 
+            <motion.button 
               onClick={prevSlide}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.92 }}
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-lg border border-slate-100 hover:bg-primary hover:text-white transition-colors"
             >
               <ChevronLeft size={24} />
-            </button>
+            </motion.button>
           </div>
           <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-8">
-            <button 
+            <motion.button 
               onClick={nextSlide}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.92 }}
               className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-lg border border-slate-100 hover:bg-primary hover:text-white transition-colors"
             >
               <ChevronRight size={24} />
-            </button>
+            </motion.button>
           </div>
-        </div>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center space-x-2 mt-10">
+            {testimonials.map((_, idx) => (
+              <motion.button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                animate={{ width: idx === current ? 24 : 8, backgroundColor: idx === current ? '#ff6b00' : '#cbd5e1' }}
+                transition={{ duration: 0.3 }}
+                className="h-2 rounded-full"
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

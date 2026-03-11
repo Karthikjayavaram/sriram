@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, PlayCircle, Award, Users, BookOpen } from 'lucide-react';
+import { ArrowRight, PlayCircle, Award } from 'lucide-react';
 import HeroScene from '../three/HeroScene';
 
 const Hero = () => {
@@ -17,40 +17,72 @@ const Hero = () => {
         
         {/* Text Content */}
         <div className="w-full md:w-3/5 text-white lg:pr-12">
+          
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20 shadow-[0_0_15px_rgba(255,107,0,0.3)]"
           >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20 shadow-[0_0_15px_rgba(255,107,0,0.3)]">
+            <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ repeat: Infinity, duration: 3, delay: 1 }}>
               <Award size={16} className="text-secondary" />
-              <span className="text-sm font-semibold tracking-wide text-slate-200">NO.1 IAS COACHING INSTITUTE IN INDIA</span>
-            </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold leading-tight mb-6">
-              Shape Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 drop-shadow-lg">Future</span><br />
-              With the Best.
-            </h1>
-            
-            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
-              Join Sriram's IAS and embark on a journey mapped for success. We provide comprehensive guidance, elite faculty, and an environment curated for the top ranks.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-              <button className="bg-gradient-to-r from-secondary to-orange-600 hover:from-orange-600 hover:to-secondary text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,107,0,0.5)] flex items-center justify-center group w-full sm:w-auto">
-                Start Your Journey
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button className="flex items-center space-x-3 text-white hover:text-secondary transition-colors group w-full sm:w-auto justify-center sm:justify-start">
-                <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-all group-hover:scale-110">
-                  <PlayCircle size={28} className="text-white group-hover:text-secondary" />
-                </div>
-                <span className="font-semibold text-lg">Watch Video</span>
-              </button>
-            </div>
-            
+            </motion.div>
+            <span className="text-sm font-semibold tracking-wide text-slate-200">NO.1 IAS COACHING INSTITUTE IN INDIA</span>
           </motion.div>
+
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold leading-tight mb-6"
+          >
+            Shape Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 drop-shadow-lg">Future</span><br />
+            With the Best.
+          </motion.h1>
+          
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed"
+          >
+            Join Sriram's IAS and embark on a journey mapped for success. We provide comprehensive guidance, elite faculty, and an environment curated for the top ranks.
+          </motion.p>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.65 }}
+            className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12"
+          >
+            <motion.button 
+              whileHover={{ scale: 1.06, boxShadow: '0 0 30px rgba(255,107,0,0.6)' }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-gradient-to-r from-secondary to-orange-600 hover:from-orange-600 hover:to-secondary text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(255,107,0,0.5)] flex items-center justify-center group w-full sm:w-auto"
+            >
+              Start Your Journey
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+            
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-3 text-white hover:text-secondary transition-colors group w-full sm:w-auto justify-center sm:justify-start"
+            >
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1] }} 
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-all group-hover:scale-110"
+              >
+                <PlayCircle size={28} className="text-white group-hover:text-secondary" />
+              </motion.div>
+              <span className="font-semibold text-lg">Watch Video</span>
+            </motion.button>
+          </motion.div>
+          
         </div>
         
         {/* The right side space for the 3D scene to breathe on desktop */}
@@ -62,12 +94,17 @@ const Hero = () => {
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ opacity: { duration: 1, delay: 1.2 }, y: { repeat: Infinity, duration: 2, delay: 1.2 } }}
       >
         <span className="text-white/70 text-xs mb-2 tracking-widest uppercase">Scroll Down</span>
         <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-secondary rounded-full"></div>
+          <motion.div 
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="w-1 h-2 bg-secondary rounded-full"
+          ></motion.div>
         </div>
       </motion.div>
       
